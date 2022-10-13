@@ -1,0 +1,5 @@
+$ avr-gcc -Os -DF_CPU=16000000UL -mmcu=atmega328p -o led led.c  // The avr-gcc compiler creates an executable binary program that contains machine code
+                                                                // file name is led.c
+$ avr-objcopy -O ihex -R .eeprom led led.hex                    // Binary is converted to HEX using avr-objcopy
+$ avrdude -F -V -c arduino -p ATMEGA328P -P COM3 -b 115200 -U flash:w:led.hex // port number is COM3
+                                                                // uploading the hex file to the microcontroller using avrdude.
