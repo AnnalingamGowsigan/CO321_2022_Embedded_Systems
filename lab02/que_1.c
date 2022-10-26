@@ -10,6 +10,7 @@ int main(void)
 {
     DDRD &= ~(1 << 7);                                                             // PD7 is input
     DDRB = DDRB | (1 << 0) | (1 << 1) | (1 << 2) | (1 << 3) | (1 << 4) | (1 << 5); // Set PORTB is output
+                                                                                   // DDRB = 0b00111111
 
     while (1)
     {
