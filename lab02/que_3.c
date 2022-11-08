@@ -4,7 +4,7 @@
 
 #define BLINK_DELAY_MS 2000
 
-int count = 0;
+// int count = 0;
 
 int main(void)
 {
@@ -27,6 +27,7 @@ int main(void)
 
 ISR(INT0_vect)
 {
-    PORTB = count++;
+    PORTB = PORTB + 1;
+    // PORTB = count++;
     //_delay_ms(BLINK_DELAY_MS);
 }
