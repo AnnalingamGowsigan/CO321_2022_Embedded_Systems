@@ -1,14 +1,35 @@
 #include <avr/io.h>
 #include <util/delay.h>
-#define BLINK_DELAY_MS 1000
+
+#define BLINK_DELAY_MS 2000
+
 int main(void)
 {
-    DDRB = DDRB | (1 << 0); /* configure pin 5 of PORTB for output*/
-    while (1)
+    DDRB = 0xFF;
+#include <avr/io.h>
+#include <util/delay.h>
+
+#define BLINK_DELAY_MS 1000
+
+    int main(void)
     {
-        PORTB = PORTB | (1 << 0); /* set pin 5 high to turn led on */
-        _delay_ms(BLINK_DELAY_MS);
-        PORTB = PORTB & ~(1 << 0); /* set pin 5 low to turn led off */
-        _delay_ms(BLINK_DELAY_MS);
+        DDRB = 0xFF;
+
+        for (unsigned char i = 0; i < 256; i++)
+        {
+            PORTB = i;
+            _delay_ms(BLINK_DELAY_MS);
+        }
+
+        return 0;
     }
+
+    PORTB = 0x00;
+
+    for (unsigned int i = 0; i < 256; i++)
+    {
+        PORTB = i;
+    }
+
+    return 0;
 }

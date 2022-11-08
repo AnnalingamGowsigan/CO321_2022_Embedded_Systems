@@ -1,14 +1,20 @@
+// toggle PB 200 times
 #include <avr/io.h>
 #include <util/delay.h>
+
 #define BLINK_DELAY_MS 1000
+
 int main(void)
 {
-    DDRB = DDRB | (1 << 0); /* configure pin 5 of PORTB for output*/
-    while (1)
+    DDRB = 0xFF;
+
+    PORTB = 0xAA;
+
+    for (unsigned char i = 0; i < 200; i++)
     {
-        PORTB = PORTB | (1 << 0); /* set pin 5 high to turn led on */
-        _delay_ms(BLINK_DELAY_MS);
-        PORTB = PORTB & ~(1 << 0); /* set pin 5 low to turn led off */
+        PORTB = ~PORTB;
         _delay_ms(BLINK_DELAY_MS);
     }
+
+    return 0;
 }
