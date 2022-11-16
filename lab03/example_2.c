@@ -7,7 +7,7 @@ void delay_timer0()
     TCNT0 = 116; // load timer counter register with 0
 
     TCCR0A = 0x00; // set the Timer0 under normal mode with 1:8 perscaler
-    TCCR0B = 0x02;
+    TCCR0B = TCCR0B | (1 << CS01) | (1 << CS00);
 
     while ((TIFR0 & 0x01) == 0)
         ; // wait till timer overflow bit (T0V0) is set

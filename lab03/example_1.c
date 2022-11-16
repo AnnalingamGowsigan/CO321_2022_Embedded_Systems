@@ -6,8 +6,8 @@ void delay_timer0()
 {
     TCNT0 = 0x00; // load timer counter register with 0
 
-    TCCR0A = 0x00; // set the Timer0 under normal mode with no perscaler
-    TCCR0B = 0x01;
+    TCCR0A = 0x00;         // set the Timer0 under normal mode with
+    TCCR0B |= (1 << CS00); // no perscaler
 
     while ((TIFR0 & 0x01) == 0)
         ; // wait till timer overflow bit (T0V0) is set
@@ -17,7 +17,7 @@ void delay_timer0()
 
     TIFR0 = 0x01; // clear the timer overflow bit (T0v0) for next round
                   // strange thing about this flag is in order to clear it we should
-                  // write 1 to it This rule applies to all falgs of AVR chip
+                  // write 1 to it This rule applies to+2 all falgs of AVR chip
 }
 int main(void)
 {
